@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}URL Shorter{% endblock %}
+
+{% block form %}
+	<h1>Il suo link non é stato trovato <img src="{{ url_for('static', filename='images/attention.svg') }}" width="28px"></h1>
+	<a href="/"><button class="button">Vai alla home</button></a>
+{% endblock %}
+
+{% block image %}
+	<img src="{{ url_for('static', filename='images/ppl.jpg') }}">
+{% endblock %}
+
+{% block content %}
+	<div class="linea">
+		<hr>
+	</div>
+{% endblock %}
+
+{% block other %}
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Lavori in corso{% endblock %}
+
+{% block form %}
+	<h1 style="margin-top: 100px;">Lavori in corso <img src="{{ url_for('static', filename='images/attention.svg') }}" width="28px"></h1>
+	<h3 style="font-weight: normal;" >Il sito momentaneamente non é disponibile stiamo lavorando per farlo tornare on</h3>
+{% endblock %}
+
+{% block image %}
+	<img src="{{ url_for('static', filename='images/ppl.jpg') }}">
+{% endblock %}
+
+{% block content %}
+	<div class="linea">
+		<hr>
+	</div>
+{% endblock %}
+
+{% block other %}
+
+{% endblock %}

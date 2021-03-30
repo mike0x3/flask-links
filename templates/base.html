@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}">
+	<script src="https://kit.fontawesome.com/7e89bea7cb.js" crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/modal.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+	<div class="header">
+		<div class="logo active"><a href="/">URL Shorter</a></div>
+  		
+  		<div class="menu-button" onclick="mobileNavbar()">
+ 			<a class="icon">
+    			<div class="bars-icon" onclick="navbarAnimation(this)">
+					<div class="icon-bar1"></div>
+					<div class="icon-bar2"></div>
+					<div class="icon-bar3"></div>
+				</div>
+ 			</a>
+ 		</div>
+  		<div class="header-right" id="header-right">
+   			 <a class="#contact" href="#">Chi Siamo?</a>
+   			 <a href="/contattaci">Contattaci</a>
+   			 <a href="#">Features</a>
+ 		</div>
+	</div>
+	
+	<div class="main">
+		<div class="container">
+			<div class="form" id="form">
+				{% block form %}
+				{% endblock %}
+			</div>
+
+			<div class="image">
+				{% block image %}
+				{% endblock %}
+			</div>
+			{% block content %}
+			{% endblock %}
+			<div class="footer">
+			<div class="foot1">
+				<h3>Perché noi?</h3>
+				<ul class="ul-none">
+					<li>Bitly 101</li>
+					<li>Integrations & API</li>
+					<li>Enterprise Class</li>
+					<li>Pricing</li>
+				</ul>
+			</div>
+			<div class="foot2">
+				<h3>Social Media</h3>
+				<ul class="ul-none">
+					<li>Social Media</li>
+					<li>Digital Marketing</li>
+					<li>Customer Service</li>
+					<li>For Developers</li>
+					<li>Link Management</li>
+					<li>Branded Links</li>
+				</ul>
+			</div>
+			<div class="foot3">
+				<h3>Risorse</h3>
+				<ul class="ul-none">
+					<li>Blog</li>
+					<li>Resource Library</li>
+					<li>Developers</li>
+					<li>Supporto</li>
+				</ul>
+			</div>
+			<div class="foot4">
+				<h3>Risorse</h3>
+				<ul class="ul-none">
+					<li>About Bitly</li>
+					<li>Our team</li>
+					<li>Careers</li>
+					<li>Partners</li>
+					<li>Press</li>
+					<li>Contact</li>
+					<li>Reviews</li>
+
+
+				</ul>
+			</div>
+			<div class="foot5">
+				<h3>Features</h3>
+				<ul class="ul-none">
+					<li>Link Management</li>
+					<li>Branded Links</li>
+					<li>Mobile Links</li>
+					<li>Partners</li>
+					<li>Campaign</li>
+					<li>Management</li>
+					<li>Analytics</li>
+				</ul>
+			</div>
+			</div>
+			<div class="copyright">
+				<span> ©2021 URL Shorter Versione BETA 2.1 Segui i nostri social: <a href="https://instagram.com/mike_0x3"><img src="{{ url_for('static', filename='images/instagram.svg') }}" width="16px"></a> <a class="visited" href="https://facebook.com/mike_0x3"><img src="{{ url_for('static', filename='images/facebook.svg') }}" width="16px"></a> <a class="visited" href="https://twitter.com/mike_0x3"><img src="{{ url_for('static', filename='images/twitter.svg') }}" width="16px"></a> <a class="visited" href="mailto:mrchela123@gmail.com" ><img src="{{ url_for('static', filename='images/email.svg') }}" width="16px"></a> 
+				</span>
+			</div>
+			<div class="go-up">
+				<a onclick="window.scrollTo(0,0);"><i class="fas fa-chevron-up"></i></a>
+			</div>
+		</div>
+	</div>
+{% block other %}
+{% endblock %}
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js')}}"></script>
+</html>

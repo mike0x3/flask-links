@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}URL Shorter{% endblock %}
+
+{% block form %}
+	{% for message in get_flashed_messages() %}
+					{% if message == "Link aggiunto"%}
+						<div class="bar-container">
+							
+							<div onclick="viewHome()" class="button-home">
+								<span class="written1">Home</span>
+								<div class="color-bar1"></div>
+							</div>
+							
+							<div onclick="viewYourLink()" class="button-link">
+								<span class="written2">Il tuo link</span>
+								<div class="color-bar2"></div>
+							</div>	
+						</div>
+						<div class="your-url">
+							<h2>{{ message }}</h2>
+							<div class="popup">
+  								<span class="popuptext" id="myPopup">Link copiato</span>
+							</div>
+							<div>
+								<label for="url">Il vostro URL</label>
+								<input class="input" id="new_url" value="{{ url_for('redirect_to_url', code=code, _external=True) }}">
+								<br>
+								<button class="button" onclick="copyLink()">Copia l'url</button>
+							</div>
+						</div>
+						<style>
+							.remove {display: none;}
+						</style>
+					{% else %}
+						<h3 class="flash-message">{{ message }}</h3>
+					{% endif %}
+				{% endfor %}
+				<h1 class="remove">Inserisci Il tuo URL</h1>
+				<form class="remove" action="your-url" method="post">
+					<label for="url">Indirizzo URL</label>
+					<input id="input1" class="input" type="url" name="url" value="" required>
+					<br>
+					<label for="code">Nome corto</label>
+					<input id="input2" class="input" type="text" name="code" value="" required>
+					<br>
+					<label for="random">Codice random</label>
+					<input type="checkbox" onclick="setRandom()" id="randomcheck" name="random">
+					<br>
+					<input class="button" type="submit" name="Shorten">
+					<br>
+				</form>
+				{% if codes %}
+				<div class="codes">
+					<br><br><h2>I tuoi link:</h2>
+					<ul>
+						{% for code in codes %}
+							{% if code == "Vedi tutto" %}
+							<button id="myBtn" onclick="openClose()" class="button">{{ code }}</button>
+							{% else %}
+							<a class="link codici" href="{{ url_for('redirect_to_url', code=code)}}">
+							<li>{{ code }}</li>
+							</a>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+{% endblock %}
+{% block image %}
+<img src="{{ url_for('static', filename='images/ppl.jpg') }}" alt="omini">
+{% endblock %}
+
+
+{% block content %}
+<div class="linea">
+				<hr>
+			</div>
+			<div class="text-block">
+				
+				<h1 class="title">Il servizio di URL Shirting che fa crescere il tuo business</h1>
+				<h2 class="title2">I click del sito del tuo brad aumenteranno almeno di 34% secondo le nostre ricerche</h2>
+
+			</div>	
+			<div class="cards">
+				<div class="card1">
+					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
+					<h2>Rimuoviamo i limiti</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+				</div>
+				<div class="card2">
+					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
+					<h2>Rimuoviamo i limiti</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+				</div>
+				<div class="card3">
+					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
+					<h2>Rimuoviamo i limiti</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+				</div>
+			<div class="button-div">
+				<a onclick="window.scrollTo(0,0);"><button class="button-start">Inizia</button><br></a>
+				<a class="link" href="/">Leggi di piú</a>
+			</div>
+
+
+
+			</div>
+			<div class="more">
+				<div class="title-white"><h1>Piú di un link shortner</h1></div>
+				<div class="button-div">
+					<a onclick="window.scrollTo(0,0);"><button class="button-add">Inizia gratis</button></a><br>	
+				</div>
+			</div>
+{% endblock %}
+{% block other %}
+<input type="text" value="{{ random_num }}" id="randomnum">
+<div id="myModal" class="modal">
+	<div class="modal-content">
+		<span class="close" id="close">&times;</span>
+		<div class="modal-header">
+			<h2 class="header-modal">I tuoi link:</h2>
+		</div>
+			<div class="links">
+				{% for code in all_codes %}
+					<a class="link font-big" href="{{ url_for('redirect_to_url', code=code)}}">
+						<li>{{ code }}</li>
+					</a>
+				{% endfor %}
+			</div>
+	</div>
+</div>
+{% endblock %}

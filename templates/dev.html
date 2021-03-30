@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Admin panel{% endblock %}
+{% block image %}{% endblock %}
+{% block form %}
+<h1>Pagina di controllo degli admin</h1>
+<form action="/dev" method="POST" class="login">
+	<label for="psw">Inserisci il codice di verifica</label><br>
+	<input type="password" name="psw" class="admin-button"><br>
+	<input type="submit" value="Manda" class="admin-button"><br>
+</form>
+<a href="/"><input type="submit" value="Torna alla home" class="admin-button"></a><br>
+{% endblock %}
+{% block content %}
+{% for message in get_flashed_messages() %}
+	{% if message == "Tasto attivato"%}
+	<style>
+		.login{
+			display: none;
+		}
+	</style>
+	<div class="admin-comands">
+		<h2>I comandi dell'admin</h2>
+		<form action="/dev" method="POST">
+			<input type="submit" value="Attiva Lavori in Corso" name="activ" class="admin-button"><br>
+			<input type="submit" value="Disattiva Lavori in Corso" name="deactiv" class="admin-button"><br>
+			<input type="submit" value="Logout" name="Logout" class="admin-button">
+		</form>
+	</div>
+	{% else %}
+	<h2>{{ message }}</h2>
+	{% endif %}
+{% endfor %}
+{% endblock %}

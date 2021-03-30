@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}URL Shorter{% endblock %}
+
+{% block form %}
+{% for message in get_flashed_messages() %}
+	<div class="flash-message">
+		<h3>{{ message }}</h3>
+	</div>
+{% endfor %}
+<h1>Inserisci Il tuo messaggio</h1>
+<form action="/contattaci" method="post">
+	<label for="name">Nome e Cognome</label>
+	<input id="contact-input1" class="input" type="text" name="name" value="" required="required">
+	<br>
+	<label for="email">Email</label>
+	<input id="contact-input2" class="input" type="email" name="email" value="" required="required">
+	<br>
+	<label for="text" style="display: block;">Messaggio</label>
+	<textarea name="text" class="textarea" cols="35" rows="4" required="required"></textarea>
+	<br>
+	<input class="button" type="submit" value="Manda">
+</form>
+{% endblock %}
+
+{% block image %}
+<img src="https://resources.mynewsdesk.com/image/upload/t_open_graph_image/georfoa8dywf3fes8ma7.jpg">
+{% endblock %}
+
+{% block content %}
+<div class="line"></div>
+<div class="direct-contact">
+	<h2>O contattaci tramite social:</h2>
+	<div class="social-direct">
+		<ul>
+			<li><a href="https://instagram.com/mike_0x3"> Instgram <i class="fab fa-instagram"></i></a> |</li>
+			<li><a href="https://facebook.com/mike_0x3">Facebook <i class="fab fa-facebook-f"></i></a> |</li>
+			<li><a href="https://api.whatsapp.com/send/?phone=%2B393483713525&text&app_absent=0"> WhatsApp <i class="fab fa-whatsapp"></i></a> |</li>
+			<li><a href="mailto:telegiver1@gmail.com"> Email <i class="far fa-envelope"></i></a> |</li>
+			<li><a href="https://twitter.com/mike_0x3"> Twitter <i class="fab fa-twitter"></i></a></li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
+{% block other %}
+
+{% endblock %}
