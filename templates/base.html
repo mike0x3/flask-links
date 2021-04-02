@@ -32,7 +32,10 @@
 	</div>
 	
 	<div class="main">
+
 		<div class="container">
+			{% block messages %}
+			{% endblock %}
 			<div class="form" id="form">
 				{% block form %}
 				{% endblock %}

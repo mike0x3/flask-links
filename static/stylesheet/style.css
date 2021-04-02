@@ -142,7 +142,7 @@ html {
 }
 
 .form {
-  padding: 19% 5% 0% 10%; 
+  padding: 16% 5% 0% 10%; 
   width: 45%;
   float: left;
 }
@@ -217,7 +217,7 @@ html {
 }
 
 .image {
-  margin-top: 15%;
+  margin-top: 12%;
   margin-left: 0px;
   margin-bottom: 15%;
   width: 55%;
@@ -535,6 +535,26 @@ html {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+}
+
+.flash-mex {
+    width: 92.5%;
+    margin-top: 10%;
+    margin-left: 4%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.danger {
+  border:solid #ff0000 2px;
+}
+
+.ok {
+  border:solid #ffff00 2px;
+}
+
+.new {
+  border:solid #00ff00 2px;
 }
 
 /* Popup container - can be anything you want */

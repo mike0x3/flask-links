@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 
 {% block title %}URL Shorter{% endblock %}
-
+{% block messages %}
+	{% if flash_mex.style == "danger" %}
+	<div class="flash-mex danger">
+		<h2>{{ flash_mex.title }}</h2>
+		<p>{{ flash_mex.text }}</p>
+	</div>
+	{% elif flash_mex.style == "ok" %}
+	<div class="flash-mex ok">
+		<h2>{{ flash_mex.title }}</h2>
+		<p>{{ flash_mex.text }}</p>
+	</div>
+	{% elif flash_mex.style == "new" %}
+	<div class="flash-mex new">
+		<h2>{{ flash_mex.title }}</h2>
+		<p>{{ flash_mex.text }}</p>
+	</div>
+	{% endif %}
+{% endblock %}
 {% block form %}
 	{% for message in get_flashed_messages() %}
 					{% if message == "Link aggiunto"%}

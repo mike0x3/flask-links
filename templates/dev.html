@@ -64,6 +64,34 @@
 				<input type="submit" value="Carica l'immagine">
 			</form>
 		</div>
+		<div class="create-flash">
+			<h3>Scrivi un messaggio e questo apparirá nel sito</h3>
+			<h5 style="color: grey;">Per rimuoverlo scrivi qualunque cosa nei box e seleziona rimuovi sotto</h5>
+			<form action="/db" method="POST">
+				<label for="flash_text">Titolo del messaggio</label>
+				<input type="text" required name="flash_title"><br>
+				<label for="flash_text">Testo del messaggio</label>
+				<input type="text" required name="flash_text"><br>
+				<div>
+					<label for="danger">Messaggio di pericolo</label>
+					<input type="radio" name="option" value="danger"><br>
+				</div>
+				<div>
+					<label for="okay">Messaggio normale</label>
+					<input type="radio" name="option" value="ok"><br>
+				</div>
+				<div>
+					<label for="new">Messaggio per una novitá</label>
+					<input type="radio" name="option" value="new"><br>
+				</div>
+				<div>
+					<label for="new">Rimuovi il messaggio</label>
+					<input type="radio" name="option" value="rimuovi"><br>
+				</div>
+				
+				<input type="submit" value="Manda">
+			</form>
+		</div>
 		<style>
 			.small-img img{width: 30%;}
 			/*.small-img input[type="text"]{padding: 20px 10px; line-height: 28px;}*/
@@ -82,6 +110,10 @@
 
 			.upload-img{
 				margin-top: 30px;
+			}
+
+			.create-flash{
+				margin-top: 20px;
 			}
 		</style>
 	</div>

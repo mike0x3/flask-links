@@ -30,6 +30,15 @@ class Cards(db.Model):
 	def __repr__(self):
 		return f'<cards {self.id}>'
 
+class Flash(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(50), nullable=True)
+	text = db.Column(db.Text, nullable=True)
+	style = db.Column(db.String(10), nullable=True)
+
+	def __repr__(self):
+		return f'<flash {self.id}>'
+
 #print(Cards.query.filter_by(id=1).first().title)
 
 @app.route('/', methods=["GET"])
@@ -38,6 +47,7 @@ def home():
 	card1 = Cards.query.filter_by(id=1).first()
 	card2 = Cards.query.filter_by(id=2).first()
 	card3 = Cards.query.filter_by(id=3).first()
+	flash_mex = Flash.query.filter_by(id=1).first()
 	for code in session.keys():
 		codes_list.append(code)
 	codes_list_backup = codes_list.copy()
@@ -50,9 +60,9 @@ def home():
 	if request.method == "GET":
 		link = request.values.get('link')
 		code = request.values.get('code')
-		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, link=link, code=code, card1=card1, card2=card2, card3=card3)
+		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, link=link, code=code, card1=card1, card2=card2, card3=card3, flash_mex=flash_mex)
 	else:
-		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, card1=card1, card2=card2, card3=card3)
+		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, card1=card1, card2=card2, card3=card3, flash_mex=flash_mex)
 
 @app.route('/contattaci', methods=["POST", "GET"])
 def contattaci():
@@ -246,9 +256,46 @@ def add_to_db():
 			flash('Immagine salvata con successo')
 			return redirect('/dev')
 
-		if 'file' not in request.files:
-			return 'dio can'
-		
+		if 'flash_text' in request.form:
+			radio = request.form['option']
+			testo = request.form['flash_text']
+			titolo = request.form['flash_title']
+
+			if radio == "danger":
+				flash1 = Flash.query.filter_by(id=1).first()
+				flash1.title = titolo
+				flash1.text = testo
+				flash1.style = "danger"
+				db.session.commit()
+				flash('Testo aggiunto al sito!')
+				return redirect('/dev')
+
+			if radio == "ok":
+				flash1 = Flash.query.filter_by(id=1).first()
+				flash1.title = titolo
+				flash1.text = testo
+				flash1.style = "ok"
+				db.session.commit()
+				flash('Testo aggiunto al sito!')
+				return redirect('/dev')
+
+			if radio == "new":
+				flash1 = Flash.query.filter_by(id=1).first()
+				flash1.title = titolo
+				flash1.text = testo
+				flash1.style = "new"
+				db.session.commit()
+				flash('Testo aggiunto al sito!')
+				return redirect('/dev')
+
+			if radio == "rimuovi":
+				flash1 = Flash.query.filter_by(id=1).first()
+				flash1.title = ""
+				flash1.text = ""
+				flash1.style = ""
+				db.session.commit()
+				flash('Testo rimosso  dal sito con successo!')
+				return redirect('/dev')
 
 @app.errorhandler(404)
 def page_not_found(error):
