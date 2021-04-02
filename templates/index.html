@@ -84,19 +84,19 @@
 			</div>	
 			<div class="cards">
 				<div class="card1">
-					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
-					<h2>Rimuoviamo i limiti</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+					<img src="{{ card1.image_link }}" width="100%" alt="ponte e mare">
+					<h2>{{ card1.title }}</h2>
+					<p>{{ card1.text }}</p>
 				</div>
 				<div class="card2">
-					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
-					<h2>Rimuoviamo i limiti</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+					<img src="{{ card2.image_link }}" width="100%" alt="ponte e mare">
+					<h2>{{ card2.title }}</h2>
+					<p>{{ card2.text }}</p>
 				</div>
 				<div class="card3">
-					<img src="{{ url_for('static', filename='images/ponte.jpg')}}" width="100%" alt="ponte e mare">
-					<h2>Rimuoviamo i limiti</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet consectetur erat, ac porttitor elit mollis semper. Donec et lacus felis. Fusce vitae sodales enim, id dignissim leo. Phasellus quis urna vitae leo tincidunt placerat. Donec aliquet aliquet sapien, convallis facilisis massa malesuada vitae. Proin congue tempus arcu, non pellentesque massa aliquet ac. Donec efficitur ultricies sagittis.</p>
+					<img src="{{ card3.image_link }}" width="100%" alt="ponte e mare">
+					<h2>{{ card3.title }}</h2>
+					<p>{{ card3.text }}</p>
 				</div>
 			<div class="button-div">
 				<a onclick="window.scrollTo(0,0);"><button class="button-start">Inizia</button><br></a>

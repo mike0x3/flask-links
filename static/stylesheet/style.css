@@ -740,6 +740,7 @@ html {
   .cards {
     margin-left: auto;
     margin-right: auto;
+    flex-direction: column;
   }
 
   .card1 {
@@ -761,6 +762,11 @@ html {
     margin: 5px 10px 10px 22px;
     float: none;
     padding: 15px;
+  }
+
+  .mb-card{
+    width: 100% !important;
+    margin-left: 0 !important;
   }
 
   .more {
@@ -900,5 +906,16 @@ html {
     zoom: 130%;
   }
 }
+
+@media screen and (width: 2560px) and (height: 1440px) {
+  body {
+      -moz-transform: scale(1.8);
+      -o-transform: scale(1.8);
+      -ms-transform: scale(1.8);
+      -webkit-transform: scale(1.8);
+      zoom: 180%;
+    }
+}
+
 
 

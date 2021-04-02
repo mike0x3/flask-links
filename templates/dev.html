@@ -25,9 +25,68 @@
 			<input type="submit" value="Disattiva Lavori in Corso" name="deactiv" class="admin-button"><br>
 			<input type="submit" value="Logout" name="Logout" class="admin-button">
 		</form>
+		<div class="cards">
+			
+				<div class="card1 small-img mb-card">
+					<form action="/db" method="POST">
+						<input type="text" name="title1" value="{{ card1.title }}" required>
+						<textarea name="text1" cols="30" rows="10" required>{{ card1.text }}</textarea>
+						<img src="{{ card1.image_link }}" alt="immagine1">
+						<input type="text" name="image_link1" value="{{ card1.image_link }}" required>
+						<input type="submit" name="submit" value="Modifica">
+					</form>
+				</div>
+				<div class="card2 small-img mb-card">
+					<form action="/db" method="POST">
+						<input type="text" name="title2" value="{{ card2.title }}" required>
+						<textarea name="text2" cols="30" rows="10" required>{{ card2.text }}</textarea>
+						<img src="{{ card2.image_link }}" alt="immagine2">
+						<input type="text" name="image_link2" value="{{ card2.image_link }}" required>
+						<input type="submit" name="submit" value="Modifica">
+					</form>
+				</div>
+				<div class="card3 small-img mb-card">
+					<form action="/db" method="POST">
+						<input type="text" name="title3" value="{{ card3.title }}" required>
+						<textarea name="text3" cols="30" rows="10" required>{{ card3.text }}</textarea>
+						<img src="{{ card3.image_link }}" alt="immagine3">
+						<input type="text" name="image_link3" value="{{ card3.image_link }}" required>
+						<input type="submit" name="submit" value="Modifica">
+					</form>
+				</div>
+			
+		</div>
+		<div class="upload-img">
+			<h3>Per mettere un immagine nuova caricala sul server:</h3>
+			<h5 style="color: grey;">Dopodiché ti basterá scrivere /static/images/nome_del_file per usarla</h5>
+			<form action="/db" method="POST" enctype = "multipart/form-data">
+				<input type="file" name="file"><br>
+				<input type="submit" value="Carica l'immagine">
+			</form>
+		</div>
+		<style>
+			.small-img img{width: 30%;}
+			/*.small-img input[type="text"]{padding: 20px 10px; line-height: 28px;}*/
+			.cards {
+				width: 100%;
+				display: flex;
+				margin-top: 30px;
+				align-items: center;
+				justify-content: space-around;
+			}
+
+			textarea {
+				resize: none;
+				width: 100%;
+			}
+
+			.upload-img{
+				margin-top: 30px;
+			}
+		</style>
 	</div>
 	{% else %}
-	<h2>{{ message }}</h2>
+	<h3 style="margin-left: 10%; color: red;">{{ message }}</h3>
 	{% endif %}
 {% endfor %}
 {% endblock %}

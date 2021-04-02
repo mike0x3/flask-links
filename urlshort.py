@@ -1,9 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, abort, session
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 import threading
 import json
 import generator
-import os.path
+import os
+from os.path import join, dirname, realpath
 import smtplib
 
 app = Flask(__name__)
@@ -11,6 +14,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cards.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'Fh6dkd3sg3Bh28Gfnh4D'
 db = SQLAlchemy(app)
+UPLOADS_PATH = join(dirname(realpath(__file__)), 'static/images/')
+app.config['UPLOAD_FOLDER'] = UPLOADS_PATH
+app.config['MAX_CONTENT_PATH'] = 1024 * 1024
 
 index_html = 'index.html'
 contattaci_html = 'contattaci.html'
@@ -24,9 +30,14 @@ class Cards(db.Model):
 	def __repr__(self):
 		return f'<cards {self.id}>'
 
+#print(Cards.query.filter_by(id=1).first().title)
+
 @app.route('/', methods=["GET"])
 def home():
 	codes_list = []
+	card1 = Cards.query.filter_by(id=1).first()
+	card2 = Cards.query.filter_by(id=2).first()
+	card3 = Cards.query.filter_by(id=3).first()
 	for code in session.keys():
 		codes_list.append(code)
 	codes_list_backup = codes_list.copy()
@@ -39,9 +50,9 @@ def home():
 	if request.method == "GET":
 		link = request.values.get('link')
 		code = request.values.get('code')
-		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, link=link, code=code)
+		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, link=link, code=code, card1=card1, card2=card2, card3=card3)
 	else:
-		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num)
+		return render_template(index_html, codes=codes_list, all_codes=codes_list_backup, random_num=random_num, card1=card1, card2=card2, card3=card3)
 
 @app.route('/contattaci', methods=["POST", "GET"])
 def contattaci():
@@ -142,8 +153,12 @@ def dev():
 					return render_template("dev.html")
 			except Exception as e:
 				pass
+			
+			card1 = Cards.query.filter_by(id=1).first()
+			card2 = Cards.query.filter_by(id=2).first()
+			card3 = Cards.query.filter_by(id=3).first()
 			flash('Tasto attivato')
-			return render_template('dev.html')
+			return render_template('dev.html', card1=card1, card2=card2, card3=card3)
 	except Exception as e:
 		pass
 
@@ -152,8 +167,14 @@ def dev():
 			if request.form['psw'] == "Laougay69":
 				session['admin'] = True
 				flash('Tasto attivato')
+				card1 = Cards.query.filter_by(id=1).first()
+				card2 = Cards.query.filter_by(id=2).first()
+				card3 = Cards.query.filter_by(id=3).first()
+
+				return render_template('dev.html', card1=card1, card2=card2, card3=card3)
 			else:
 				flash('Codice errato')
+				return render_template('dev.html')
 		except Exception as e:
 			pass
 		try:
@@ -179,6 +200,55 @@ def dev():
 			pass
 
 	return render_template('dev.html')
+
+@app.route('/db', methods=['POST', 'GET'])
+def add_to_db():
+	if request.method == "POST":
+		if "title1" in request.form:
+			title = request.form['title1']
+			text = request.form['text1']
+			image_link = request.form['image_link1']
+			upd_data = Cards.query.filter_by(id=1).first()
+			upd_data.title = title
+			upd_data.text = text
+			upd_data.image_link = image_link
+			db.session.commit()
+			flash('Informazioni in card modificate con successo')
+			return redirect('/dev')
+
+		if "title2" in request.form:
+			title = request.form['title2']
+			text = request.form['text2']
+			image_link = request.form['image_link2']
+			upd_data = Cards.query.filter_by(id=2).first()
+			upd_data.title = title
+			upd_data.text = text
+			upd_data.image_link = image_link
+			db.session.commit()
+			flash('Informazioni in card modificate con successo')
+			return redirect('/dev')
+
+		if "title3" in request.form:
+			title = request.form['title3']
+			text = request.form['text3']
+			image_link = request.form['image_link3']
+			upd_data = Cards.query.filter_by(id=3).first()
+			upd_data.title = title
+			upd_data.text = text
+			upd_data.image_link = image_link
+			db.session.commit()
+			flash('Informazioni in card modificate con successo')
+			return redirect('/dev')
+
+		if 'file' in request.files:
+			file = request.files['file']
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
+			flash('Immagine salvata con successo')
+			return redirect('/dev')
+
+		if 'file' not in request.files:
+			return 'dio can'
+		
 
 @app.errorhandler(404)
 def page_not_found(error):
