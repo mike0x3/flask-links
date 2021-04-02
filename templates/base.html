@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&amp;display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/style.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/modal.css') }}">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}{% endblock %}</title>
 </head>
@@ -113,4 +114,8 @@
 {% endblock %}
 </body>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js')}}"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </html>
