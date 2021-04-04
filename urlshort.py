@@ -174,7 +174,7 @@ def dev():
 
 	if request.method == 'POST':
 		try:
-			if request.form['psw'] == "Laougay69":
+			if request.form['psw'] == "Pannellopsw123":
 				session['admin'] = True
 				flash('Tasto attivato')
 				card1 = Cards.query.filter_by(id=1).first()
@@ -296,6 +296,11 @@ def add_to_db():
 				db.session.commit()
 				flash('Testo rimosso  dal sito con successo!')
 				return redirect('/dev')
+
+@app.route('/about-us')
+def about_us():
+	#return '<h1>Attualmente in sviluppo</h1><br><a href="/">Vai alla home</a>'
+	return render_template("about-us.html")
 
 @app.errorhandler(404)
 def page_not_found(error):

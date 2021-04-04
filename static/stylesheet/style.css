@@ -557,6 +557,24 @@ html {
   border:solid #00ff00 2px;
 }
 
+.blue-line {
+  height: 7px;
+  width: 150px;
+  background-color: blue;
+  margin-bottom: 15px;
+}
+
+.svg2{
+  margin-top: 300px;
+}
+
+.wave{
+  background-color: #1899FF;
+  height: 300px;
+  width: 100%;
+  line-height:0px;
+}
+
 /* Popup container - can be anything you want */
 .popup {
   position: relative;
