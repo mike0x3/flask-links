@@ -838,6 +838,25 @@ html {
     display: none;
   }
 
+  .create-flash h3{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .create-flash h5{
+    padding-bottom: 5px;
+  }
+
+  .create-flash label{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .create-flash input{
+    margin-top: 5px;
+    msrgin-bottom: 5px;
+  }
+
 }
 
 @media screen and (min-width: 641px) {
